@@ -2625,7 +2625,7 @@ Heal_RemoveDamageEffect:
 	ldh a, [hPlayAreaEffectTarget]
 	add DUELVARS_ARENA_CARD_HP
 	call GetTurnDuelistVariable
-	add 10 ; remove 1 damage counter
+	add 20 ; remove 2 damage counter
 	ld [hl], a
 	ldh a, [hPlayAreaEffectTarget]
 	call DrawPlayAreaScreenToShowChanges
@@ -4494,12 +4494,12 @@ Curse_TransferDamageEffect:
 	ldh a, [hPlayAreaEffectTarget]
 	add DUELVARS_ARENA_CARD_HP
 	call GetTurnDuelistVariable
-	sub 10
+	sub 20
 	ld [hl], a
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	add DUELVARS_ARENA_CARD_HP
 	ld l, a
-	ld a, 10
+	ld a, 20
 	add [hl]
 	ld [hl], a
 
@@ -4562,7 +4562,7 @@ GengarDarkMind_DamageBenchEffect:
 	ret z ; no target chosen
 	call SwapTurn
 	ld b, a
-	ld de, 10
+	ld de, 20
 	call DealDamageToPlayAreaPokemon_RegularAnim
 	call SwapTurn
 	ret
@@ -6105,7 +6105,7 @@ SubmissionEffect:
 	ret
 
 GolemSelfdestructEffect:
-	ld a, 100
+	ld a, 110
 	call DealRecoilDamageToSelf
 	ld a, TRUE
 	ld [wIsDamageToSelf], a
@@ -6139,7 +6139,7 @@ Ram_SelectSwitchEffect:
 	ret
 
 Ram_RecoilSwitchEffect:
-	ld a, 20
+	ld a, 10
 	call DealRecoilDamageToSelf
 	ldh a, [hTemp_ffa0]
 	call HandleSwitchDefendingPokemonEffect
@@ -6197,15 +6197,15 @@ SandAttackEffect:
 	ret
 
 SandslashFurySwipes_AIEffect:
-	ld a, 60 / 2
-	lb de, 0, 60
+	ld a, 80 / 2
+	lb de, 0, 80
 	jp SetExpectedAIDamage
 
 SandslashFurySwipes_MultiplierEffect:
 	ld hl, 20
 	call LoadTxRam3
 	ldtx de, DamageCheckIfHeadsXDamageText
-	ld a, 3
+	ld a, 4
 	call TossCoinATimes_BankB
 	add a
 	call ATimes10
@@ -7018,14 +7018,14 @@ MagnetonLv28SelfdestructEffect:
 ; own bench
 	ld a, TRUE
 	ld [wIsDamageToSelf], a
-	ld a, 20
+	ld a, 30
 	call DealDamageToAllBenchedPokemon
 
 ; opponent's bench
 	call SwapTurn
 	xor a ; FALSE
 	ld [wIsDamageToSelf], a
-	ld a, 20
+	ld a, 30
 	call DealDamageToAllBenchedPokemon
 	call SwapTurn
 	ret

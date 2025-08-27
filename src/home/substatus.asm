@@ -215,11 +215,11 @@ HandleStrikesBack_AgainstDamagingAttack::
 	call GetTurnDuelistVariable
 	push af
 	push hl
-	ld de, 10
+	ld de, 20
 	call SubtractHP
 	ld a, [wLoadedCard2ID]
 	ld [wTempNonTurnDuelistCardID], a
-	ld hl, 10
+	ld hl, 20
 	call LoadTxRam3
 	ld hl, wLoadedCard2Name
 	ld a, [hli]
